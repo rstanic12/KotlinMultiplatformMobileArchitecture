@@ -1,8 +1,10 @@
 package com.kotlin.multiplatform.features.login
 
-class LoginAnalyticsPresenter : LoginPresenterType(LoginViewStore()) {
+import com.kotlin.multiplatform.core.presentation.presenter.BasePresenter
+
+class LoginAnalyticsPresenter : BasePresenter() {
     override suspend fun onBind() {
-        collect<LoginAction> { onAction(it) }
+        collectActions(this::onAction)
     }
 
     private fun onAction(action: LoginAction) = when (action) {

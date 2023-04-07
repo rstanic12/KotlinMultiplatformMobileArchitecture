@@ -1,12 +1,16 @@
-package com.kotlin.multiplatform.core.presentation
+package com.kotlin.multiplatform.core.presentation.viewstore
+
+import com.kotlin.multiplatform.core.presentation.BaseViewModel
+import com.kotlin.multiplatform.core.presentation.BaseViewState
+import com.kotlin.multiplatform.core.presentation.viewcontract.BaseViewContract
 
 abstract class BaseViewStore<
     ViewState : BaseViewState,
-    ViewEvent : BaseViewEvent,
     ViewModel : BaseViewModel,
     ViewContract : BaseViewContract<ViewModel>>(
-    initialViewModel: ViewModel,
+    initialViewModel: ViewModel
 ) {
+
     protected lateinit var viewContract: ViewContract
         private set
 
@@ -19,9 +23,6 @@ abstract class BaseViewStore<
 
     protected fun render(viewModel: ViewModel) {
         this.viewModel = viewModel
-        viewContract.render(this.viewModel)
+        viewContract.render(viewModel)
     }
-
-    abstract fun reduce(viewState: ViewState)
-    abstract fun event(viewEvent: ViewEvent)
 }
