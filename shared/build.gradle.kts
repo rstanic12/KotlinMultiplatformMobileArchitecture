@@ -1,7 +1,7 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
-    id("com.google.devtools.ksp") version "1.7.10-1.0.6"
+    id("com.google.devtools.ksp") version "1.8.10-1.0.9"
 }
 
 kotlin {
@@ -67,7 +67,13 @@ android {
 
 dependencies {
     val kotlinInjectCompiler = "me.tatarka.inject:kotlin-inject-compiler-ksp:0.6.1"
-    add("kspAndroid", kotlinInjectCompiler)
-    add("kspIosArm64", kotlinInjectCompiler)
-    add("kspIosX64", kotlinInjectCompiler)
+    add("kspCommonMainMetadata", kotlinInjectCompiler)
+}
+
+afterEvaluate {
+    tasks {
+        withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>> {
+            if (name != "kspCommonMainKotlinMetadata") dependsOn("kspCommonMainKotlinMetadata")
+        }
+    }
 }
