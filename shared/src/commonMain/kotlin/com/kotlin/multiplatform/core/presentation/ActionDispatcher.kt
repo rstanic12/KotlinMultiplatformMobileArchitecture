@@ -2,7 +2,7 @@ package com.kotlin.multiplatform.core.presentation
 
 import com.kotlin.multiplatform.core.presentation.presenter.BasePresenter
 import com.kotlin.multiplatform.core.presentation.presenter.RenderablePresenter
-import com.kotlin.multiplatform.core.presentation.viewcontract.BaseViewContract
+import com.kotlin.multiplatform.core.presentation.viewcontract.ViewContract
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -26,17 +26,13 @@ class ActionDispatcher : CoroutineScope {
 
     fun <ViewModel : BaseViewModel> bind(
         presenter: RenderablePresenter<*, ViewModel, *>,
-        viewContract: BaseViewContract<ViewModel>
+        viewContract: ViewContract<ViewModel>
     ) {
         presenter.bind(
             actions.asSharedFlow(),
             effectDispatcher,
             viewContract
         )
-    }
-
-    fun unbind(presenter: BasePresenter) {
-        presenter.unbind()
     }
 
     fun emit(action: BaseAction) = launch {

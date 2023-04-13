@@ -4,7 +4,7 @@ import com.kotlin.multiplatform.core.presentation.BaseAction
 import com.kotlin.multiplatform.core.presentation.BaseViewModel
 import com.kotlin.multiplatform.core.presentation.BaseViewState
 import com.kotlin.multiplatform.core.presentation.EffectDispatcher
-import com.kotlin.multiplatform.core.presentation.viewcontract.BaseViewContract
+import com.kotlin.multiplatform.core.presentation.viewcontract.ViewContract
 import com.kotlin.multiplatform.core.presentation.viewstore.RenderableViewStore
 import kotlinx.coroutines.flow.Flow
 
@@ -18,7 +18,7 @@ abstract class RenderablePresenter<
     fun bind(
         actions: Flow<BaseAction>,
         effectDispatcher: EffectDispatcher,
-        viewContract: BaseViewContract<ViewModel>
+        viewContract: ViewContract<ViewModel>
     ) {
         this.bind(actions, effectDispatcher)
         viewStore.bind(viewContract)

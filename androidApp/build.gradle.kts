@@ -39,4 +39,5 @@ dependencies {
     implementation("androidx.compose.foundation:foundation:1.4.1")
     implementation("androidx.compose.material:material:1.4.1")
     implementation("androidx.activity:activity-compose:1.7.0")
+    implementation("com.arkivanov.decompose:extensions-compose-jetpack:2.0.0-alpha-01")
 }

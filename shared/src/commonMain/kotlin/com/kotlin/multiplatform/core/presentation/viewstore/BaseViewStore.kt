@@ -2,15 +2,13 @@ package com.kotlin.multiplatform.core.presentation.viewstore
 
 import com.kotlin.multiplatform.core.presentation.BaseViewModel
 import com.kotlin.multiplatform.core.presentation.BaseViewState
-import com.kotlin.multiplatform.core.presentation.viewcontract.BaseViewContract
 
 abstract class BaseViewStore<
     ViewState : BaseViewState,
     ViewModel : BaseViewModel,
-    ViewContract : BaseViewContract<ViewModel>>(
+    ViewContract : com.kotlin.multiplatform.core.presentation.viewcontract.ViewContract<ViewModel>>(
     initialViewModel: ViewModel
 ) {
-
     protected lateinit var viewContract: ViewContract
         private set
 

@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("kotlin-parcelize")
     id("com.google.devtools.ksp") version "1.8.10-1.0.9"
 }
 
@@ -22,6 +23,7 @@ kotlin {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
                 implementation("me.tatarka.inject:kotlin-inject-runtime:0.6.1")
+                api("com.arkivanov.decompose:decompose:2.0.0-alpha-01")
             }
         }
         val commonTest by getting {
