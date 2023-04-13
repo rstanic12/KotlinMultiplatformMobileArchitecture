@@ -1,0 +1,6 @@
+subscription vehicleLocation {
+    coordinate {
+        latitude
+        longitude
+    }
+}

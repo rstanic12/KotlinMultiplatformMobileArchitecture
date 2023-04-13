@@ -2,7 +2,7 @@ package com.kotlin.multiplatform.core.presentation.viewstore
 
 import com.kotlin.multiplatform.core.presentation.BaseViewModel
 import com.kotlin.multiplatform.core.presentation.BaseViewState
-import com.kotlin.multiplatform.core.presentation.viewcontract.BaseViewContract
+import com.kotlin.multiplatform.core.presentation.viewcontract.ViewContract as BaseViewContract
 
 abstract class BaseViewStore<
     ViewState : BaseViewState,
@@ -10,7 +10,6 @@ abstract class BaseViewStore<
     ViewContract : BaseViewContract<ViewModel>>(
     initialViewModel: ViewModel
 ) {
-
     protected lateinit var viewContract: ViewContract
         private set
 
