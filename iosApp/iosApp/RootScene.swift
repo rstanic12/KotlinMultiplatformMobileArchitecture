@@ -41,7 +41,7 @@ private struct ChildView: View {
     
     var body: some View {
         switch child {
-        case let child as RootComponentChild.HomeChild: Text("Home")
+        case let child as RootComponentChild.HomeChild: HomeScene(component: child.component)
         case let child as RootComponentChild.LoginChild: LoginScene(component: child.component)
         default: EmptyView()
         }

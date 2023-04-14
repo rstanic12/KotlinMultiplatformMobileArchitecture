@@ -3,6 +3,7 @@ package com.kotlin.multiplatform.features.home
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
+import com.arkivanov.decompose.router.stack.bringToFront
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
@@ -11,16 +12,16 @@ import com.arkivanov.essenty.parcelable.Parcelize
 import com.kotlin.multiplatform.core.presentation.ActionDispatcher
 import com.kotlin.multiplatform.core.presentation.navigation.Navigation
 import com.kotlin.multiplatform.core.presentation.viewcontract.ViewContract
-import com.kotlin.multiplatform.features.login.LoginComponent
 
 typealias TabNavigation = StackNavigation<DefaultHomeComponent.TabConfig>
 
 interface HomeComponent : ViewContract<HomeViewModel> {
     val viewModel: Value<HomeViewModel>
     val actionDispatcher: ActionDispatcher
-
     val tabStack: Value<ChildStack<*, TabChild>>
+    val activeTab: Value<DefaultHomeComponent.TabConfig>
 
+    fun navigate(tab: DefaultHomeComponent.TabConfig)
     sealed class TabChild {
         class MyCarChild(val component: MyCarComponent) : TabChild()
         class DrivingActivitiesChild(val component: HomeComponent) : TabChild()
@@ -46,6 +47,8 @@ class DefaultHomeComponent(
         childFactory = ::tabChild
     )
     override val tabStack: Value<ChildStack<*, HomeComponent.TabChild>> = _tabStack
+    override val activeTab: Value<TabConfig>
+        get() = getActiveTab()
 
     private val homePresenter = HomePresenter(navigation, tabNavigation)
 
@@ -56,6 +59,24 @@ class DefaultHomeComponent(
 
     override fun render(viewModel: HomeViewModel) {
         this.viewModel.value = viewModel
+    }
+
+    // .bringToFront method is not visible from within Swift, no clue why :/
+    // Therefore i created separate method for navigating
+    override fun navigate(tab: TabConfig) {
+        tabNavigation.bringToFront(tab)
+    }
+
+    private fun getActiveTab(): Value<TabConfig> {
+        val tab = when(tabStack.value.active.instance) {
+            is HomeComponent.TabChild.MyCarChild -> TabConfig.MyCar
+            is HomeComponent.TabChild.BatteryChild -> TabConfig.Battery
+            is HomeComponent.TabChild.DrivingActivitiesChild -> TabConfig.DrivingActivities
+            is HomeComponent.TabChild.HvacChild -> TabConfig.Hvac
+            is HomeComponent.TabChild.MapChild -> TabConfig.Map
+        }
+        
+        return MutableValue(tab)
     }
 
     private fun tabChild(config: TabConfig, componentContext: ComponentContext): HomeComponent.TabChild {
@@ -69,12 +90,12 @@ class DefaultHomeComponent(
     }
 
     @Parcelize
-    sealed interface TabConfig : Parcelable {
-        object MyCar : TabConfig
-        object DrivingActivities : TabConfig
-        object Map : TabConfig
-        object Hvac : TabConfig
-        object Battery : TabConfig
+    sealed class TabConfig : Parcelable {
+        object MyCar : TabConfig()
+        object DrivingActivities : TabConfig()
+        object Map : TabConfig()
+        object Hvac : TabConfig()
+        object Battery : TabConfig()
     }
 }
 
@@ -88,6 +109,8 @@ class PreviewHomeComponent(
             instance = HomeComponent.TabChild.MyCarChild(PreviewMyCarComponent())
         )
     )
+    override val activeTab: Value<DefaultHomeComponent.TabConfig> = MutableValue(DefaultHomeComponent.TabConfig.MyCar)
+    override fun navigate(tab: DefaultHomeComponent.TabConfig) {}
 }
 
 fun homeComponent(componentContext: ComponentContext, navigation: Navigation): HomeComponent {

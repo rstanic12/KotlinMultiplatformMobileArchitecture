@@ -14,6 +14,7 @@
 		B561A8A129E976C1008B9232 /* RootScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B561A8A029E976C1008B9232 /* RootScene.swift */; };
 		B561A8A329E978C6008B9232 /* ObservableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B561A8A229E978C6008B9232 /* ObservableValue.swift */; };
 		B561A8A529E97A8A008B9232 /* LoginScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B561A8A429E97A8A008B9232 /* LoginScene.swift */; };
+		B561A8A729E9873A008B9232 /* HomeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B561A8A629E9873A008B9232 /* HomeScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +40,7 @@
 		B561A8A029E976C1008B9232 /* RootScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootScene.swift; sourceTree = "<group>"; };
 		B561A8A229E978C6008B9232 /* ObservableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableValue.swift; sourceTree = "<group>"; };
 		B561A8A429E97A8A008B9232 /* LoginScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScene.swift; sourceTree = "<group>"; };
+		B561A8A629E9873A008B9232 /* HomeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				B561A8A029E976C1008B9232 /* RootScene.swift */,
 				B561A8A429E97A8A008B9232 /* LoginScene.swift */,
+				B561A8A629E9873A008B9232 /* HomeScene.swift */,
 				B561A8A229E978C6008B9232 /* ObservableValue.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
 			);
@@ -194,6 +197,7 @@
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				B561A8A129E976C1008B9232 /* RootScene.swift in Sources */,
 				B561A8A329E978C6008B9232 /* ObservableValue.swift in Sources */,
+				B561A8A729E9873A008B9232 /* HomeScene.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				B561A8A529E97A8A008B9232 /* LoginScene.swift in Sources */,
 			);
