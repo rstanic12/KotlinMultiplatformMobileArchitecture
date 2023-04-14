@@ -1,5 +1,6 @@
 package com.kotlin.multiplatform.features.login
 
+import com.kotlin.multiplatform.ApolloFetchVehicleRepository
 import com.kotlin.multiplatform.core.presentation.presenter.RenderablePresenter
 
 class LoginPresenter : RenderablePresenter<
@@ -8,7 +9,9 @@ class LoginPresenter : RenderablePresenter<
     LoginViewStore>(
     LoginViewStore(),
 ) {
+    private val repo = ApolloFetchVehicleRepository()
     override suspend fun onBind() {
+        repo.invoke(1)
         collectActions(this::onAction)
         collectEffects(this::onEffect)
     }

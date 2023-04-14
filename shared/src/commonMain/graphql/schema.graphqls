@@ -1,0 +1,22 @@
+type Vehicle {
+  id: Int!
+  manufacturer: String!
+  model: String!
+}
+
+type Coordinate {
+  latitude: Float!
+  longitude: Float!
+}
+
+type Query {
+  vehicle(id: Int!): Vehicle!
+}
+
+type Mutation {
+  login(shouldLogin: Boolean!): Boolean!
+}
+
+type Subscription {
+  coordinate: Coordinate!
+}
