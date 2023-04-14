@@ -15,6 +15,8 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = "shared"
+            export("com.arkivanov.decompose:decompose:2.0.0-alpha-01")
+            export("com.arkivanov.essenty:lifecycle:1.1.0")
         }
     }
 
@@ -24,6 +26,7 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
                 implementation("me.tatarka.inject:kotlin-inject-runtime:0.6.1")
                 api("com.arkivanov.decompose:decompose:2.0.0-alpha-01")
+                api("com.arkivanov.essenty:lifecycle:1.1.0")
             }
         }
         val commonTest by getting {
