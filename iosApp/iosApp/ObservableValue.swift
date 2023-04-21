@@ -11,11 +11,10 @@ import shared
 
 public class ObservableValue<T : AnyObject> : ObservableObject {
     private let observableValue: Value<T>
-
+    private var observer: ((T) -> Void)?
+  
     @Published
     var value: T
-
-    private var observer: ((T) -> Void)?
     
     init(_ value: Value<T>) {
         observableValue = value
